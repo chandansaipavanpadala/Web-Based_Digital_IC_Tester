@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEO-TERRA IC CHECKER</title>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Share+Tech+Mono&display=swap"
+    rel="stylesheet">
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="scanline"></div>
+  <div class="overlay"></div>
+
+  <main id="app">
+    <!-- HEADER / STATUS BAR -->
+    <header class="status-bar">
+      <div class="logo">NEO-TERRA <span class="highlight">SYSTEMS</span></div>
+      <div class="connection-status">
+        <span id="status-text">DISCONNECTED</span>
+        <div class="status-led" id="status-led"></div>
+      </div>
+    </header>
+
+    <!-- LANDING PAGE -->
+    <section id="landing-page" class="active-section">
+      <div class="center-content">
+        <h1 class="main-title glitched" data-text="NEO-TERRA IC CHECKER">NEO-TERRA IC CHECKER</h1>
+        <p class="subtitle">ADVANCED LOGIC CIRCUIT DIAGNOSTIC TOOL</p>
+        <button id="connect-btn" class="cyber-btn big-btn">
+          <i class="fa-solid fa-plug"></i> CONNECT DEVICE
+        </button>
+        <p class="error-msg" id="connection-error"></p>
+      </div>
+    </section>
+
+    <!-- MODE SELECTION -->
+    <section id="mode-selection" class="hidden-section">
+      <h2 class="section-title">SELECT OPERATION MOULO</h2>
+      <div class="card-container">
+        <div class="mode-card" id="btn-mode-auto">
+          <div class="card-icon"><i class="fa-solid fa-microchip"></i></div>
+          <h3>AUTO-IDENTIFY</h3>
+          <p>Scan connected IC to determine type and integrity.</p>
+        </div>
+        <div class="mode-card" id="btn-mode-manual">
+          <div class="card-icon"><i class="fa-solid fa-sliders"></i></div>
+          <h3>MANUAL TEST</h3>
+          <p>Select specific IC model and run targeted diagnostics.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MANUAL TEST INTERFACE -->
+    <section id="manual-test" class="hidden-section">
+      <div class="manual-layout">
+        <aside class="sidebar">
+          <button class="back-btn" id="back-from-manual"><i class="fa-solid fa-chevron-left"></i> BACK</button>
+          <div class="search-box">
+            <label for="ic-search">SELECT IC MODEL</label>
+            <input type="text" id="ic-search" placeholder="Search (e.g. 7400)..." list="ic-list">
+            <datalist id="ic-list">
+              <!-- Populated by JS -->
+            </datalist>
+            <select id="ic-select" size="10">
+              <!-- Populated by JS -->
+            </select>
+          </div>
+          <div class="actions">
+            <button id="run-test-btn" class="cyber-btn action-btn" disabled>
+              <i class="fa-solid fa-play"></i> RUN TEST
+            </button>
+          </div>
+        </aside>
+
+        <div class="main-display">
+          <div class="ic-visualizer">
+            <div class="info-panel">
+              <h2 id="selected-ic-name">NO SELECTION</h2>
+              <p id="selected-ic-desc">Select an IC to view details.</p>
+            </div>
+            <div id="pinout-diagram" class="pinout-container">
+              <!-- SVG/HTML Pinout Rendered Here -->
+            </div>
+          </div>
+          <div class="data-panel">
+            <h3>TRUTH TABLE</h3>
+            <div class="table-wrapper">
+              <table id="truth-table">
+                <thead>
+                  <tr>
+                    <th>INPUTS</th>
+                    <th>OUTPUTS</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td colspan="2">No Data</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="results-panel">
+          <h3>SYSTEM LOG</h3>
+          <div id="console-output" class="console-box">
+            <div class="log-line">System initialized. Waiting for input...</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AUTO IDENTIFY INTERFACE -->
+    <section id="auto-identify" class="hidden-section">
+      <button class="back-btn" id="back-from-auto"><i class="fa-solid fa-chevron-left"></i> BACK</button>
+      <div class="center-content">
+        <div class="scan-visual">
+          <div class="scanner-circle"></div>
+          <i class="fa-solid fa-fingerprint center-icon"></i>
+        </div>
+        <h2 id="scan-status">READY TO SCAN</h2>
+        <button id="start-scan-btn" class="cyber-btn big-btn">
+          <i class="fa-solid fa-radar"></i> INITIATE SCAN
+        </button>
+        <div id="scan-result" class="result-box hidden">
+          <h3>DETECTED: <span id="detected-ic" class="neon-text">NONE</span></h3>
+          <p id="integrity-status">---</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
